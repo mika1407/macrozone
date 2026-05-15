@@ -1,5 +1,6 @@
 import { deleteMeal } from '@/storage/meals';
 import { colors } from '@/styles/global';
+import * as Haptics from 'expo-haptics';
 import { Alert, Platform, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 type MealItemProps = {
@@ -42,6 +43,7 @@ const handleLongPress = () => {
 
 const deleteAndRefresh = async () => {
   await deleteMeal(id);
+  Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
   onDelete();
 };
 
